@@ -7,98 +7,88 @@ Code Contributions
 
 Contribute code changes through GitHub by forking the repository and sending a pull request. 
 
+## Pull Request Process
 
-Setup
------
+1. Ensure any install or build dependencies are removed before the end of the layer when doing a 
+   build.
+2. Update the README.md with details of changes to the interface, this includes new environment 
+   variables, exposed ports, useful file locations and container parameters.
+3. Increase the version numbers in any examples files and the README.md to the new version that this
+   Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
+4. You may merge the Pull Request in once you have the sign-off of two other developers, or if you 
+   do not have permission to do that, you may request the second reviewer to merge it for you.
 
-Django
-python3 -m django --version
-Pycharrm config - https://medium.com/@srijan.pydev_21998/configure-pycharm-for-python-django-and-introduction-to-django-rest-framework-f9c1a7cb4ba0
-Principles - 
-Productivity - With less code
-Good, clean code - https://docs.djangoproject.com/en/dev/misc/design-philosophies/
-Fun
-Great Documentation - https://www.djangoproject.com/
+## Code of Conduct
 
+### Our Pledge
 
-Model-Template-View Pattern
-Model - Represents your data, Maps model classes to database tables
-View [In MVC-Controller] - Takes HTTP request and returns a response, may call template and/or model
-Template [In MVC-View] - Generates HTML, Presentation Logic only
+In the interest of fostering an open and welcoming environment, we as
+contributors and maintainers pledge to making participation in our project and
+our community a harassment-free experience for everyone, regardless of age, body
+size, disability, ethnicity, gender identity and expression, level of experience,
+nationality, personal appearance, race, religion, or sexual identity and
+orientation.
 
+### Our Standards
 
+Examples of behavior that contributes to creating a positive environment
+include:
 
-Create Virtual env - 
-	$ python3 -m venv <env_name>
+* Using welcoming and inclusive language
+* Being respectful of differing viewpoints and experiences
+* Gracefully accepting constructive criticism
+* Focusing on what is best for the community
+* Showing empathy towards other community members
 
-Activate Virtual Env
-		$ . django-env/bin/activate
-	for fish  :
-  . django-env/bin/activate.fish
-Leave Env
-	$ deactivate
+Examples of unacceptable behavior by participants include:
 
-Install django 
-	$ pip install django
-	$ pip install django==<VERSION>
+* The use of sexualized language or imagery and unwelcome sexual attention or
+advances
+* Trolling, insulting/derogatory comments, and personal or political attacks
+* Public or private harassment
+* Publishing others' private information, such as a physical or electronic
+  address, without explicit permission
+* Other conduct which could reasonably be considered inappropriate in a
+  professional setting
 
+### Our Responsibilities
 
+Project maintainers are responsible for clarifying the standards of acceptable
+behavior and are expected to take appropriate and fair corrective action in
+response to any instances of unacceptable behavior.
 
-Creating a project
-$ django-admin startproject gazelo
+Project maintainers have the right and responsibility to remove, edit, or
+reject comments, commits, code, wiki edits, issues, and other contributions
+that are not aligned to this Code of Conduct, or to ban temporarily or
+permanently any contributor for other behaviors that they deem inappropriate,
+threatening, offensive, or harmful.
 
-For this project - (post clone setup)  
-Running the project
-$ cd <project_name>
-$ python manage.py runsserver
+### Scope
 
+This Code of Conduct applies both within project spaces and in public spaces
+when an individual is representing the project or its community. Examples of
+representing a project or community include using an official project e-mail
+address, posting via an official social media account, or acting as an appointed
+representative at an online or offline event. Representation of a project may be
+further defined and clarified by project maintainers.
 
+### Enforcement
 
-Models and Migrations
-Models - 
-Python classes mapped to database tables
-Each object is a row in a table
-Migrations -
-Python scripts
-Keep db structure in sync with code
-Auto-generated (but not always)
+Instances of abusive, harassing, or otherwise unacceptable behavior may be
+reported by contacting the project team at [INSERT EMAIL ADDRESS]. All
+complaints will be reviewed and investigated and will result in a response that
+is deemed necessary and appropriate to the circumstances. The project team is
+obligated to maintain confidentiality with regard to the reporter of an incident.
+Further details of specific enforcement policies may be posted separately.
 
-Django Apps
-Python package
-Contains models, views, templates, urls
-Most django projects contain several apps
-Apps can be reused between projects
-Better to keep apps small and simple
-should be clear, simple purpose
-Check migrations
-$ python manage.py showmigrations
-Run Migration
-$ python manage.py migrate
-Create app- 
-	$ python manage.py startapp <app_name>
+Project maintainers who do not follow or enforce the Code of Conduct in good
+faith may face temporary or permanent repercussions as determined by other
+members of the project's leadership.
 
-Create migrations
-	$ python manage.py makemigrations
-creating actual SQL, MySQL, postgres scripts-
-like for SQL - 
-$ python manage.py sqlmigrate <app_name> <migration_name> 
-eg : $ python manage.py sqlmigrate outset 0001
-To make sure this package is actually imported by Django, add your app to INSTALLED_APPS in setttings.py
+### Attribution
 
-Django doesnot take null values by default for a field, so when we add new field to a table, we should provide a default value for migration
-Migrations are ordered, obviously
-order is determined by dependencies
-Using manage.py in commands is preferred while working on django projects as it is coupled to our project and loads setttings.py among other things
+This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
+available at [http://contributor-covenant.org/version/1/4][version]
 
-Django ORM - 
-Interacts from persistent data from Python (we think in classes and objects)
-Generates Database and SQL
-Backends supported - MySQL, Postgres, Oracle, SQLite
-Model Fields -
-Class attributes are mapped to DB columns
-Should be instances of a Field class
-Eg. IntegerField, CharField
-Field class determines
-Database column type (INTEGER, VARCHAR)
-How the field is rendered in a form
-
+[homepage]: http://contributor-covenant.org
+[version]: http://contributor-covenant.org/version/1/4/
