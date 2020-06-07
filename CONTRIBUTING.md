@@ -11,7 +11,6 @@ Contribute code changes through GitHub by forking the repository and sending a p
 Setup
 -----
 
-
 Django
 python3 -m django --version
 Pycharrm config - https://medium.com/@srijan.pydev_21998/configure-pycharm-for-python-django-and-introduction-to-django-rest-framework-f9c1a7cb4ba0
@@ -30,7 +29,7 @@ Template [In MVC-View] - Generates HTML, Presentation Logic only
 
 
 Create Virtual env - 
-	piyush.singh@piyushsgh-ltm4 ~/g/gazelo> python3 -m venv <env_name>
+	$ python3 -m venv <env_name>
 
 Activate Virtual Env
 		$ . django-env/bin/activate
@@ -64,9 +63,9 @@ Python scripts
 Keep db structure in sync with code
 Auto-generated (but not always)
 
-* Django Apps
- * Python package
- * Contains models, views, templates, urls
+Django Apps
+Python package
+Contains models, views, templates, urls
 Most django projects contain several apps
 Apps can be reused between projects
 Better to keep apps small and simple
@@ -91,7 +90,7 @@ Migrations are ordered, obviously
 order is determined by dependencies
 Using manage.py in commands is preferred while working on django projects as it is coupled to our project and loads setttings.py among other things
 
-* Django ORM - 
+Django ORM - 
 Interacts from persistent data from Python (we think in classes and objects)
 Generates Database and SQL
 Backends supported - MySQL, Postgres, Oracle, SQLite
@@ -102,18 +101,4 @@ Eg. IntegerField, CharField
 Field class determines
 Database column type (INTEGER, VARCHAR)
 How the field is rendered in a form
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
