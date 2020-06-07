@@ -14,6 +14,7 @@ class User(models.Model):
 class Video(models.Model):
     name = models.CharField(max_length=400, blank=False)
     user = models.ForeignKey(User, related_name="added_by", on_delete=models.CASCADE)
+    data_source = models.CharField(max_length=400, blank=True, default="NONE" , null=False)
     created_date = models.DateTimeField(auto_now_add=True)
     last_modified_date = models.DateTimeField(auto_now_add=True)
     access_level = models.IntegerField() #maybe - 0=private, 1=public, 2=masked
