@@ -1,5 +1,10 @@
 from django.db import models
 
+VIDEO_ACCESS_LEVEL = (
+    (0, "Private, nobody can view"),
+    (1, "Only followers can view"),
+    (2, "Public, anybody can view")
+)
 class User(models.Model):
     user_name = models.CharField(max_length=40, blank=False)
     full_name = models.CharField(max_length=400, blank=False)
@@ -23,7 +28,7 @@ class Video(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     last_modified_date = models.DateTimeField(auto_now_add=True)
     publish_date = models.DateTimeField(null=True, blank=True)
-    access_level = models.IntegerField() #maybe - 0=private, 1=public, 2=masked
+    access_level = models.IntegerField(default=0, choices=VIDEO_ACCESS_LEVEL) #maybe - 0=private, 1=public, 2=masked
     url_key = models.CharField(max_length=10, blank=False)
     size = models.IntegerField()
     views_count = models.IntegerField()
