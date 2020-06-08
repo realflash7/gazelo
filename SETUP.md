@@ -166,7 +166,7 @@ $ python manage.py migrate
   * Relations (foreign keys)
 
 Admin Interface
----------------------
+---------------
 
 To enable a User interface for our models, we need to register them with admin interface.
 
@@ -190,7 +190,7 @@ python manage.py createsuperuser
 
 
 Model API
---------------
+---------
 ```sh
 $ python manage.py shell
 ```

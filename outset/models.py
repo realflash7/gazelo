@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 VIDEO_ACCESS_LEVEL = (
     (0, "Private, nobody can view"),
@@ -8,6 +9,7 @@ VIDEO_ACCESS_LEVEL = (
 class User(models.Model):
     user_name = models.CharField(max_length=40, blank=False)
     full_name = models.CharField(max_length=400, blank=False)
+    auth_user = models.ForeignKey(User, related_name="auth_user", on_delete=models.CASCADE ,null=True, blank=True)
     email = models.CharField(max_length=400, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now_add=True)
