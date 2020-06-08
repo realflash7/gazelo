@@ -189,6 +189,44 @@ python manage.py createsuperuser
 ```
 
 
+Model API
+--------------
+```sh
+$ python manage.py shell
+```
+```sh
+>>> from outset.models import User,Video
+>>> Video.objects
+<django.db.models.manager.Manager object at 0x10b78b850>
+>>> Video.objects.all()
+<QuerySet [<Video: Spring vacation>, <Video: marvel superheros review>, <Video: Cute dogs>]>
+>>> Video.objects.count()
+3
+<QuerySet [<Video: Cute dogs>]>
+>>> Video.objects.exclude(name="Cute dogs")
+<QuerySet [<Video: Spring vacation>, <Video: marvel superheros review>]>
+```
+For foreign keys - two params req
+```sh
+>>> Video.objects.filter(user__user_name="Ryan")
+<QuerySet [<Video: marvel superheros review>, <Video: Cute dogs>]>
+```
+ Updating a record
+```sh
+>>> v = Video.objects.get(id=1)
+>>> v.name
+'Spring vacation'
+>>> v.name = "My spring vacation"
+>>> v.name
+'My spring vacation'
+>>> v.save()
+```
+Create a record
+```sh
+>>> u = User.objects.get(id=1)
+>>> v = Video(name="yoga today", user=u, size=23, views_count=0, likes_count=0, comments_count=0)
+>>> v.save()
+```
 
 
 
