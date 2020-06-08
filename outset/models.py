@@ -7,7 +7,7 @@ VIDEO_ACCESS_LEVEL = (
     (2, "Public, anybody can view")
 )
 class User(models.Model):
-    user_name = models.CharField(max_length=40, blank=False)
+    user_name = models.CharField(max_length=40, blank=False, unique=True)
     full_name = models.CharField(max_length=400, blank=False)
     auth_user = models.ForeignKey(User, related_name="auth_user", on_delete=models.CASCADE ,null=True, blank=True)
     email = models.CharField(max_length=400, blank=True)
