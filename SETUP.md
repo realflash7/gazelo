@@ -184,7 +184,7 @@ admin.site.register(Following)
 * Now if you run your server and go to /admin  you need to login
 * You need to create a super user
   * go to terminal
-	```sh
+```sh
 python manage.py createsuperuser
 ```
 
