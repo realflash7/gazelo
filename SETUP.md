@@ -146,7 +146,53 @@ $ python manage.py sqlmigrate <appname> migration
 ```
 * Run migrations
 ```sh
-$ pyhton manage.py migrate
+$ python manage.py migrate
 ```
+
+
+1. Django Admin Site
+-------------------------
+
+
+  * Auto-generated UI to edit our data
+  * Registering models with admin site
+  * Creating a super user
+  * Very customizable
+2. Model API
+---------------
+  * Work with data from Python
+  * Query data
+  * Save/Update/Delete
+  * Relations (foreign keys)
+
+Admin Interface
+---------------------
+
+To enable a User interface for our models, we need to register them with admin interface.
+
+In your app go to admin.py - 
+```sh
+from django.contrib import admin
+from .models import User, Video, View, Like, Comment, Following
+admin.site.register(User)
+admin.site.register(Video)
+admin.site.register(View)
+admin.site.register(Like)
+admin.site.register(Comment)
+admin.site.register(Following)
+```
+* Now if you run your server and go to /admin  you need to login
+* You need to create a super user
+  * go to terminal
+	```sh
+python manage.py createsuperuser
+```
+
+
+
+
+
+
+
 ---- https://dillinger.io/
 
