@@ -11,7 +11,7 @@ class UserAdmin(admin.ModelAdmin):
 class VideoAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "user", "access_level", "views_count", "likes_count", "comments_count")
     list_editable = ("access_level",)
-    
+
 admin.site.register(View)
 admin.site.register(Like)
 admin.site.register(Comment)
