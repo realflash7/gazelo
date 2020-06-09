@@ -21,7 +21,7 @@ class VideoQuerySet(models.QuerySet):
 
 
 class UserDetails(models.Model):
-    full_name = models.One(max_length=200, blank=False)
+    full_name = models.CharField(max_length=200, blank=False)
     bio = models.CharField(max_length=800, default="")
     auth_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -32,7 +32,7 @@ class UserDetails(models.Model):
 
     def __str__(self):
         return "{0}".format(
-            self.user_name)
+            self.auth_user.username)
 
 class Video(models.Model):
     name = models.CharField(max_length=400, blank=False)
