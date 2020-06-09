@@ -7,21 +7,23 @@
 <body>
     <h1>Welcome</h1>
     Gazelo welcomes you!!!
-    Hi! There are currently {{ nvideos }} videos you can watch.
+    Hi! There are currently {{ nvideos }} videos in totalss.
     <ul>
         My Videos
+        Total videos: {{ my_videos|length }}
         {% for v in my_videos %}
             <li>
-                Video {{ v.id }} : {{ v.name }}
+                Video :: id= {{ v.id }} | name= {{ v.name }}
             </li>
         {% endfor %}
     </ul>
 
     <ul>
         All Videos
+        Total videos: {{ all_videos|length }}
         {% for v in all_videos %}
             <li>
-                Video {{ v.id }} : {{ v.name }} added by {{ v.user }}
+                Video :: id= {{ v.id }} | name= {{ v.name }} | added by= {{ v.user }} | access_level= {{ v.access_level }}
             </li>
         {% endfor %}
     </ul>

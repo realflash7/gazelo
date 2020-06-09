@@ -16,7 +16,7 @@ class VideoQuerySet(models.QuerySet):
     def viewable_videos(self, user):
         return self.filter(
             # TODO: for masked access level
-            Q(access_level=1) | Q(user=user)
+            Q(access_level=2) | Q(user=user)
         )
 
 
