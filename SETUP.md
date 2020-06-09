@@ -228,6 +228,35 @@ Create a record
 >>> v.save()
 ```
 
+> Django runs the queries in lazy way
+
+* Manager Object
+  * For each model class, there's a manager object which allows us to create queries and execute them
+
+
+Templates and Static Content
+----------------------------------------
+
+* its best practice to keep all template files under a separate folder(your app name maybe) inside templates folder to avoid name clashes.
+
+
+Passing data from View to Template
+-----------------------------------------------
+* it is responsibility of view to collect the data that needs to be shown to the user and pass it to template
+* its better to leave to the responsibility of dealing with the database to model, than doing it in views
+
+OneToOneField (One to One relationship) - https://docs.djangoproject.com/en/3.0/topics/db/examples/one_to_one/
+
+Passing Data to a Template
+* pass data as a dictionary as third argument to render()
+* Data will be available in template context
+* Context contains other data too like logged in user
+```sh
+return render(request, "video_stream/home.html",
+       {'nvideos': Video.objects.count(), 'my_videos': user_videos, 'all_videos': all_videos})
+```
+
+
 
 
 
