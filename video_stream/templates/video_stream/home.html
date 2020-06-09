@@ -7,5 +7,23 @@
 <body>
     <h1>Welcome</h1>
     Gazelo welcomes you!!!
+    Hi! There are currently {{ nvideos }} videos you can watch.
+    <ul>
+        My Videos
+        {% for v in my_videos %}
+            <li>
+                Video {{ v.id }} : {{ v.name }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        All Videos
+        {% for v in all_videos %}
+            <li>
+                Video {{ v.id }} : {{ v.name }} added by {{ v.user }}
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

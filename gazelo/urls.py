@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', welcome),
     path('', welcome),
-    path('stream/', include("video_stream.urls"))
+    path('watch/', include("video_stream.urls"))
 ]
