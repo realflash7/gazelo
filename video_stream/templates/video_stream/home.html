@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Home</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <h1>Welcome</h1>
     Gazelo welcomes you!!!
     Hi! There are currently {{ nvideos }} videos in total.
@@ -27,5 +23,5 @@
             </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
+

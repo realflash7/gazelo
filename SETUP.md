@@ -237,7 +237,7 @@ Create a record
 Templates and Static Content
 ----------------------------------------
 
-* its best practice to keep all template files under a separate folder(your app name maybe) inside templates folder to avoid name clashes.
+* it is best practice to keep all template files under a separate folder(your app name maybe) inside templates folder to avoid name clashes.
 
 
 Passing data from View to Template
