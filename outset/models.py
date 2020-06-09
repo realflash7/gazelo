@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User
 
 VIDEO_ACCESS_LEVEL = (
@@ -6,21 +7,32 @@ VIDEO_ACCESS_LEVEL = (
     (1, "Only followers can view"),
     (2, "Public, anybody can view")
 )
-class User(models.Model):
-    user_name = models.CharField(max_length=40, blank=False)
-    full_name = models.CharField(max_length=400, blank=False)
-    auth_user = models.ForeignKey(User, related_name="auth_user", on_delete=models.CASCADE ,null=True, blank=True)
-    email = models.CharField(max_length=400, blank=True)
+
+class VideoQuerySet(models.QuerySet):
+    def videos_added_by_user(self, user):
+        return self.filter(
+            user=user
+        )
+    def viewable_videos(self, user):
+        return self.filter(
+            # TODO: for masked access level
+            Q(access_level=2) | Q(user=user)
+        )
+
+
+class UserDetails(models.Model):
+    full_name = models.CharField(max_length=200, blank=False)
+    bio = models.CharField(max_length=800, default="")
+    auth_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now_add=True)
-    is_active = models.BooleanField()
     videos_count = models.IntegerField()
     followers_count = models.IntegerField()
     following_count = models.IntegerField()
 
     def __str__(self):
         return "{0}".format(
-            self.user_name)
+            self.auth_user.username)
 
 class Video(models.Model):
     name = models.CharField(max_length=400, blank=False)
@@ -37,6 +49,8 @@ class Video(models.Model):
     likes_count = models.IntegerField()
     comments_count = models.IntegerField()
     allow_comments = models.BooleanField(default=False)
+
+    objects = VideoQuerySet.as_manager()
 
     def __str__(self):
         return "{0}".format(
