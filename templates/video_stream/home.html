@@ -1,11 +1,10 @@
-{% extends "base.html" %}
+{% extends "../base.html" %}
 
 {% block content %}
-    <h1>Welcome</h1>
-    Gazelo welcomes you!!!
-    Hi! There are currently {{ nvideos }} videos in total.
+    <h1>Welcome to Gazelo, {{ user }} !!!</h1>
+    <h4>There are currently {{ nvideos }} videos in total.</h4>
     <ul>
-        My Videos
+        <h5>My Videos</h5>
         Total videos: {{ my_videos|length }}
         {% for v in my_videos %}
             <li>
@@ -15,7 +14,7 @@
     </ul>
 
     <ul>
-        All Videos
+        <h5>All Videos</h5>s
         Total videos: {{ all_videos|length }}
         {% for v in all_videos %}
             <li>

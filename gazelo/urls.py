@@ -21,6 +21,5 @@ from .views import welcome
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', welcome),
-    path('', welcome),
-    path('watch/', include("video_stream.urls"))
+    path('', include("video_stream.urls"))
 ]
