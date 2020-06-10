@@ -25,7 +25,13 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="/">Gazelo</a>
         </div>
-
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'video_stream_logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'video_stream_login' %}">Login</a></li>
+            {% endif %}
+        </ul>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right" role="form">
             <div class="form-group">
