@@ -1,14 +1,14 @@
 from django.shortcuts import render
 
-from outset.models import Video
+from outset.models import Content
 
 def home(request):
-    user_videos = Video.objects.videos_added_by_user(
+    user_contents = Content.objects.contents_added_by_user(
         user=request.user
     )
-    all_videos = Video.objects.viewable_videos(
+    all_contents = Content.objects.viewable_contents(
         user=request.user
     )
     print("NEW REQUEST by : ", request.user)
     return render(request, "video_stream/home.html",
-            {'nvideos': Video.objects.count(), 'my_videos': user_videos, 'all_videos': all_videos})
+            {'ncontents': Content.objects.count(), 'my_contents': user_contents, 'all_contents': all_contents})
