@@ -283,7 +283,7 @@ OneToOneField (One to One relationship) - [https://docs.djangoproject.com/en/3.0
 
 Passing Data to a Template
 
-* pass data as a dictionary as third argument to render()
+* Pass data as a dictionary as third argument to render()
 * Data will be available in template context
 * Context contains other data too like logged in user
   
@@ -291,5 +291,43 @@ Passing Data to a Template
 return render(request, "video_stream/home.html",
        {'nvideos': Video.objects.count(), 'my_videos': user_videos, 'all_videos': all_videos})
 ```
+
+* If you are on a Linux system (or "parents&sons" like a MacOSX), you can quickly do it with just this one line command that you need to execute from the root of the repository: 
+
+```sh
+find . -name "*.pyc" -exec git rm -f "{}" \;
+```
+
+
+Q()
+---
+If you want to combine data with OR: use Q() and the | operator
+Q() also supports &(AND) and ~(NOT)
+
+```sh
+def viewable_videos(self, user):
+   return self.filter(
+       # TODO: for masked access level
+       Q(access_level=2) | Q(user=user)
+   )
+```
+> download prebuilt  HTML- http://www.initializr.com/
+
+
+Forms And Authentication
+------------------------
+* Change password
+
+```sh
+python manage.py changepassword <user_name>
+```
+
+login and logout
+---------------------
+What to be done - 
+* Using built-in view classes
+* Template for login form
+* Configuration
+
 
 [https://dillinger.io/](https://dillinger.io/)
