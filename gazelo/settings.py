@@ -124,3 +124,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+LOGIN_REDIRECT_URL="video_stream_home"
+LOGOUT_REDIRECT_URL="gazelo_welcome"
+LOGIN_URL="video_stream_login"

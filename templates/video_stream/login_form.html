@@ -1,4 +1,4 @@
-{% extends "../base.html" %}
+{% extends "base.html" %}
 
 {% block title %}
     Login
@@ -9,9 +9,13 @@
     <form role="form"
           action="{% url 'video_stream_login' %}"
           method="post">
+
         {% csrf_token %}
+
         <p>Please login.</p>
+
         {{ form }}
+
         <button type="submit" class="btn btn-success">Sign in</button>
     </form>
 {% endblock %}
