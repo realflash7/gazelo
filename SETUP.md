@@ -292,4 +292,10 @@ return render(request, "video_stream/home.html",
        {'nvideos': Video.objects.count(), 'my_videos': user_videos, 'all_videos': all_videos})
 ```
 
+* If you are on a Linux system (or "parents&sons" like a MacOSX), you can quickly do it with just this one line command that you need to execute from the root of the repository: 
+
+```sh
+find . -name "*.pyc" -exec git rm -f "{}" \;
+```
+
 [https://dillinger.io/](https://dillinger.io/)
