@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from outset.models import Content
 
+@login_required
 def home(request):
     user_contents = Content.objects.contents_added_by_user(
         user=request.user
