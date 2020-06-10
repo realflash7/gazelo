@@ -2,23 +2,23 @@
 
 {% block content %}
     <h1>Welcome to Gazelo, {{ user }} !!!</h1>
-    <h4>There are currently {{ nvideos }} videos in total.</h4>
+    <h4>There are currently {{ ncontents }} videos in total.</h4>
     <ul>
         <h5>My Videos</h5>
-        Total videos: {{ my_videos|length }}
-        {% for v in my_videos %}
+        Total videos: {{ my_contents|length }}
+        {% for v in my_contents %}
             <li>
-                Video :: id= {{ v.id }} | name= {{ v.name }}
+                Content :: id= {{ v.id }}
             </li>
         {% endfor %}
     </ul>
 
     <ul>
-        <h5>All Videos</h5>s
-        Total videos: {{ all_videos|length }}
-        {% for v in all_videos %}
+        <h5>All Contents</h5>s
+        Total contents: {{ all_contents|length }}
+        {% for v in all_contents %}
             <li>
-                Video :: id= {{ v.id }} | name= {{ v.name }} | added by= {{ v.user }} | access_level= {{ v.access_level }}
+                Content :: id= {{ v.id }} | added by= {{ v.user }} | access_level= {{ v.access_level }}
             </li>
         {% endfor %}
     </ul>
