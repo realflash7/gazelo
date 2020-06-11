@@ -5,4 +5,4 @@ def welcome(request):
     if request.user.is_authenticated:
         return redirect('video_stream_home')
     else:
-        return HttpResponse("Hey, guys!!")
+        return render(request, "outset/home.html")
