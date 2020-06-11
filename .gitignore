@@ -1,2 +1,6 @@
+# gazelo
 db.sqlite3
 *.pyc
+
+# PyCharm
+.idea
