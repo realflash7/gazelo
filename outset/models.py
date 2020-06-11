@@ -8,6 +8,7 @@ CONTENT_ACCESS_LEVEL = (
     (2, "Public, anybody can view")
 )
 
+
 class ContentQuerySet(models.QuerySet):
     def contents_added_by_user(self, user):
         return self.filter(
@@ -32,6 +33,7 @@ class UserDetail(models.Model):
     def __str__(self):
         return "{0}".format(
             self.auth_user.username)
+
 
 class Content(models.Model):
     user = models.ForeignKey(User, related_name="added_by", on_delete=models.CASCADE)
@@ -59,6 +61,7 @@ class View(models.Model):
         return "{0} viewed {1}".format(
             self.user, self.content)
 
+
 class Like(models.Model):
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name="liked_by", on_delete=models.CASCADE)
@@ -67,6 +70,7 @@ class Like(models.Model):
     def __str__(self):
         return "{0} liked {1}".format(
             self.user, self.content)
+
 
 class Comment(models.Model):
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
@@ -80,6 +84,7 @@ class Comment(models.Model):
     def __str__(self):
         return "{1} commented \"{1}\" on {2}".format(
             self.user, self.text, self.content)
+
 
 class Following(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

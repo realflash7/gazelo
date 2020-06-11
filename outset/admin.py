@@ -11,6 +11,7 @@ class ContentAdmin(admin.ModelAdmin):
     list_display = ("id", "user", "access_level", "views_count", "likes_count", "comments_count")
     list_editable = ("access_level",)    # extra comma as this expects a tuple, it will be considered string else
 
+
 admin.site.register(View)
 admin.site.register(Like)
 admin.site.register(Comment)
