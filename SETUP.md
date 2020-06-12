@@ -16,7 +16,7 @@ Activate Virtual Env
 for fish  :
 
 ```sh
-django-env/bin/activate.fish
+. django-env/bin/activate.fish
 ```
 
 Leave Env
