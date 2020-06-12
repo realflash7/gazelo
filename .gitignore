@@ -1,2 +1,8 @@
+# gazelo
 db.sqlite3
 *.pyc
+
+# PyCharm
+.idea
+
+.DS_Store
