@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 from outset.models import Content
 
@@ -35,5 +36,14 @@ class WatchingRecord(models.Model):
     def __str__(self):
         return "{0}".format(
             self.watch_history)
+
+
+class Invitation(models.Model):
+    from_user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="invitations_sent")
+    to_user_email = models.EmailField(blank=True)
+    to_user_phone_no = PhoneNumberField(blank=True)
+    message = models.CharField(max_length=400)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
 
 
