@@ -24,7 +24,7 @@ class ContentQuerySet(models.QuerySet):
 class UserDetail(models.Model):
     full_name = models.CharField(max_length=200, blank=False)
     bio = models.CharField(max_length=800, default="")
-    auth_user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    auth_user = models.OneToOneField(User, related_name="user_detail", on_delete=models.CASCADE, primary_key=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now_add=True)
     followers_count = models.IntegerField()
@@ -36,7 +36,7 @@ class UserDetail(models.Model):
 
 
 class Content(models.Model):
-    user = models.ForeignKey(User, related_name="added_by", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="created_contents", on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     last_modified_date = models.DateTimeField(auto_now_add=True)
     publish_date = models.DateTimeField(null=True, blank=True)
@@ -54,7 +54,7 @@ class Content(models.Model):
 
 class View(models.Model):
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name="viewed_by", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="views_by_user", on_delete=models.CASCADE)
     last_view_date = models.DateTimeField()
 
     def __str__(self):
@@ -64,7 +64,7 @@ class View(models.Model):
 
 class Like(models.Model):
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name="liked_by", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="likes_by_user", on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -74,7 +74,7 @@ class Like(models.Model):
 
 class Comment(models.Model):
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name="commented_by", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="comments_by_user", on_delete=models.CASCADE)
     text = models.CharField(max_length=1000, blank=False)
     is_top_level = models.BooleanField()    # true=comment, false=reply
     parent_comment = models.ForeignKey('self', on_delete=models.CASCADE, blank=True)
@@ -87,8 +87,8 @@ class Comment(models.Model):
 
 
 class Following(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    follower = models.ForeignKey(User, related_name="follower", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="user_followers", on_delete=models.CASCADE)
+    follower = models.ForeignKey(User, related_name="user_following", on_delete=models.CASCADE)
 
     def __str__(self):
         return "{0} follows {1}".format(
