@@ -129,3 +129,5 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL="video_stream_home"
 LOGOUT_REDIRECT_URL="gazelo_welcome"
 LOGIN_URL="video_stream_login"
+
+APP_NAME="Gazelo"
