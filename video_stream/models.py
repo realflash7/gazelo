@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+
 from phonenumber_field.modelfields import PhoneNumberField
 
+from gazelo.settings import INVITATION_MESSAGE
 from outset.models import Content
 
 
@@ -42,8 +45,18 @@ class Invitation(models.Model):
     from_user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="invitations_sent")
     to_user_email = models.EmailField(blank=True)
     to_user_phone_no = PhoneNumberField(blank=True)
-    message = models.CharField(max_length=400)
+    message = models.CharField(default=INVITATION_MESSAGE, max_length=400)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "invitation from {0} to email={1},phone={2}".format(
+            self.from_user, self.to_user_email, self.to_user_phone_no
+        )
+
+
+#    def clean(self):
+ #      if self.to_user_email is None and self.to_user_phone_no is None:
+  #          raise ValidationError("Email and Phone both cannot be empty")
 
 
 

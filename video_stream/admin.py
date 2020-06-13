@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Video, WatchHistory, WatchingRecord
+from .models import Video, WatchHistory, WatchingRecord, Invitation
 
 
 @admin.register(Video)
@@ -11,3 +11,4 @@ class VideoAdmin(admin.ModelAdmin):
 
 admin.site.register(WatchHistory)
 admin.site.register(WatchingRecord)
+admin.site.register(Invitation)

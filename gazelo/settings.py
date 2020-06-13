@@ -126,8 +126,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
-LOGIN_REDIRECT_URL="video_stream_home"
-LOGOUT_REDIRECT_URL="gazelo_welcome"
-LOGIN_URL="video_stream_login"
+LOGIN_REDIRECT_URL = "video_stream_home"
+LOGOUT_REDIRECT_URL = "gazelo_welcome"
+LOGIN_URL = "video_stream_login"
 
-APP_NAME="Gazelo"
+# custom constants
+APP_NAME = "Gazelo"
+INVITATION_MESSAGE = "Hey, I am on " + APP_NAME + " and inviting you to join. It is AWESOME!!"
