@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Invite your friends on {{ app_name }}</h1>
+    <form role="form" action="{% url 'video_stream_new_invitation' %}" method="post">
+
+        {{ form }}
+
+        {% csrf_token %}
+
+        <button type="submit">Send the invitation</button>
+    </form>
+{% endblock %}
