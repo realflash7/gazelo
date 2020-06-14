@@ -32,3 +32,8 @@ def new_invitation(request):
     else:
         form = InvitationForm()
     return render(request, "video_stream/new_invitation_form.html", {'app_name': APP_NAME, 'form': form, 'app_name': APP_NAME})
+
+
+@login_required
+def test(request):
+    return render(request, "video_stream/test.html")
