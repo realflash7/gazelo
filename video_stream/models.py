@@ -43,8 +43,15 @@ class WatchingRecord(models.Model):
 
 class Invitation(models.Model):
     from_user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="invitations_sent")
-    to_user_email = models.EmailField(blank=True)
-    to_user_phone_no = PhoneNumberField(blank=True)
+    to_user_email = models.EmailField(
+        verbose_name="Friend's email",
+        help_text="Please add the email of your friend you want to invite."
+    )
+    to_user_phone_no = PhoneNumberField(
+        blank=True,
+        verbose_name="Friend's contact number",
+        help_text="Please add the contact number of your friend you want to invite."
+    )
     message = models.CharField(default=INVITATION_MESSAGE, max_length=400)
     timestamp = models.DateTimeField(auto_now_add=True)
 
