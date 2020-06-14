@@ -13,7 +13,7 @@ class Video(models.Model):
     content = models.OneToOneField(Content, on_delete=models.CASCADE, primary_key=True)
     description = models.TextField(max_length=40000, null=True, blank=True, default="")
     data_source = models.CharField(max_length=400, blank=True, default="NONE" , null=False)
-    url_key = models.CharField(max_length=10, blank=False)
+    slug = models.SlugField()
     size = models.IntegerField()
 
     def __str__(self):
