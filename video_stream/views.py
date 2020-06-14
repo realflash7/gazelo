@@ -18,7 +18,7 @@ def home(request):
     )
     print("NEW REQUEST by : ", request.user)
     return render(request, "video_stream/home.html",
-            {'ncontents': Content.objects.count(), 'my_contents': user_contents, 'all_contents': all_contents})
+            {'app_name': APP_NAME, 'ncontents': Content.objects.count(), 'my_contents': user_contents, 'all_contents': all_contents})
 
 
 @login_required
@@ -31,4 +31,4 @@ def new_invitation(request):
             return redirect('video_stream_home')
     else:
         form = InvitationForm()
-    return render(request, "video_stream/new_invitation_form.html", {'form': form, 'app_name': APP_NAME})
+    return render(request, "video_stream/new_invitation_form.html", {'app_name': APP_NAME, 'form': form, 'app_name': APP_NAME})
