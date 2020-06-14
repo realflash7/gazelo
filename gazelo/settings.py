@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phonenumber_field',
+    'crispy_forms',
     'outset',
     'video_stream'
 ]
@@ -129,6 +130,8 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = "video_stream_home"
 LOGOUT_REDIRECT_URL = "gazelo_welcome"
 LOGIN_URL = "video_stream_login"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # custom constants
 APP_NAME = "Gazelo"
