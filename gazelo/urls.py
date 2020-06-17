@@ -21,5 +21,6 @@ from .views import welcome
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', welcome, name="gazelo_welcome"),
+    path('profile/', include("outset.urls")),
     path('watch/', include("video_stream.urls"))
 ]
