@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
-    This is profile page for user {{ user.id }} : {{ user.username }}
+    <h1>{{ user_detail.full_name }}</h1>
+    <h2>Followers : {{ user_detail.followers_count }}</h2>
+    <h2>Following : {{ user_detail.following_count }}</h2>
 {% endblock %}
 

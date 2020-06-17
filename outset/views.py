@@ -8,8 +8,8 @@ from outset.models import UserDetail
 @login_required
 def profile(request, username):
     user = User.objects.get(username=username)
-    absurl = UserDetail.get_absolute_url(user.user_detail)
-    print(absurl)
+    user_detail = UserDetail.objects.get(auth_user=user)
+    print("Fetched User:", user_detail.__str__())
     return render(request,
                   "outset/profile.html",
-                  {'user' : user})
+                  {'user_detail' : user_detail})
