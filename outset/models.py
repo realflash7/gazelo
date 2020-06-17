@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 CONTENT_ACCESS_LEVEL = (
     (0, "Private, nobody can view"),
@@ -29,6 +30,9 @@ class UserDetail(models.Model):
     modified_date = models.DateTimeField(auto_now_add=True)
     followers_count = models.IntegerField()
     following_count = models.IntegerField()
+
+    def get_absolute_url(self):
+        return reverse('outset_profile', args=[self.auth_user.username])
 
     def __str__(self):
         return "{0}".format(
