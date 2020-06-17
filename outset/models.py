@@ -3,6 +3,8 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+from gazelo.settings import DEFAULT_USER_BIO
+
 CONTENT_ACCESS_LEVEL = (
     (0, "Private, nobody can view"),
     (1, "Only followers can view"),
@@ -24,12 +26,12 @@ class ContentQuerySet(models.QuerySet):
 
 class UserDetail(models.Model):
     full_name = models.CharField(max_length=200, blank=False)
-    bio = models.CharField(max_length=800, default="")
+    bio = models.CharField(max_length=800, default=DEFAULT_USER_BIO)
     auth_user = models.OneToOneField(User, related_name="user_detail", on_delete=models.CASCADE, primary_key=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now_add=True)
-    followers_count = models.IntegerField()
-    following_count = models.IntegerField()
+    followers_count = models.IntegerField(default=0)
+    following_count = models.IntegerField(default=0)
 
     def get_absolute_url(self):
         return reverse('outset_profile', args=[self.auth_user.username])

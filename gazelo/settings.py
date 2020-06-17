@@ -136,3 +136,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 # custom constants
 APP_NAME = "Gazelo"
 INVITATION_MESSAGE = "Hey, I am on " + APP_NAME + " and inviting you to join. It is AWESOME!!"
+DEFAULT_USER_BIO = "Let's " + APP_NAME + " !!"
