@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.dispatch import receiver
 
 from gazelo.settings import DEFAULT_USER_BIO
 
