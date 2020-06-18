@@ -33,7 +33,7 @@ class Profile(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now_add=True)
     followers_count = models.IntegerField(default=0)
-    following_count = models.IntegerField(default=0)
+    followings_count = models.IntegerField(default=0)
 
     def get_absolute_url(self):
         return reverse('outset_profile', args=[self.user.username])
@@ -113,10 +113,22 @@ from outset.models import Profile
 
 @receiver(post_save, sender=User)
 def user_post_save_hook(sender, instance, created, **kwargs):
-    print("REACHED POST SAVE")
+    print("OUTSET: REACHED POST SAVE - ", User.__name__)
     if created:
         Profile.objects.create(user=instance)
     else:
         instance.profile.save()
+
+
+@receiver(post_save, sender=Following)
+def following_post_save_hook(sender, instance, created, **kwargs):
+    print("OUTSET: REACHED POST SAVE - ", Following.__name__)
+    if created:
+        instance.user.profile.followers_count += 1
+        instance.user.profile.save()
+        instance.follower.profile.followings_count += 1
+        instance.follower.profile.save()
+
+
 
 
