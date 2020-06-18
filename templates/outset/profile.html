@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block content %}
-    <h1>{{ profile.full_name }}</h1>
+    <h1>{{ profile.user.username }}</h1>
     <h2>Followers : {{ profile.followers_count }}</h2>
 
     <ul>
         {% for u in followers %}
             <a class="list-group-item" href="{{ u.follower.profile.get_absolute_url }}">
-                {{ u.follower.profile.full_name }}
+                {{ u.follower.username }}
             </a>
         {% endfor %}
     </ul>
@@ -19,7 +19,7 @@
     <ul>
         {% for u in followings %}
             <a class="list-group-item" href="{{ u.user.profile.get_absolute_url }}">
-                {{ u.user.profile.full_name }}
+                {{ u.user.username }}
             </a>
         {% endfor %}
     </ul>

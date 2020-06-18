@@ -1,8 +1,9 @@
 from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import User
-from django.urls import reverse
+from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 from gazelo.settings import DEFAULT_USER_BIO
 
@@ -18,6 +19,7 @@ class ContentQuerySet(models.QuerySet):
         return self.filter(
             user=user
         )
+
     def viewable_contents(self, user):
         return self.filter(
             # TODO: for masked access level
@@ -26,20 +28,19 @@ class ContentQuerySet(models.QuerySet):
 
 
 class Profile(models.Model):
-    full_name = models.CharField(max_length=200, blank=False)
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE, primary_key=True)
     bio = models.CharField(max_length=800, default=DEFAULT_USER_BIO)
-    auth_user = models.OneToOneField(User, related_name="user_detail", on_delete=models.CASCADE, primary_key=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now_add=True)
     followers_count = models.IntegerField(default=0)
     following_count = models.IntegerField(default=0)
 
     def get_absolute_url(self):
-        return reverse('outset_profile', args=[self.auth_user.username])
+        return reverse('outset_profile', args=[self.user.username])
 
     def __str__(self):
         return "{0}".format(
-            self.auth_user.username)
+            self.user.username)
 
 
 class Content(models.Model):
@@ -100,5 +101,22 @@ class Following(models.Model):
     def __str__(self):
         return "{0} follows {1}".format(
             self.follower, self.user)
+
+
+
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+from outset.models import Profile
+
+
+@receiver(post_save, sender=User)
+def user_post_save_hook(sender, instance, created, **kwargs):
+    print("REACHED POST SAVE")
+    if created:
+        Profile.objects.create(user=instance)
+    else:
+        instance.profile.save()
 
 

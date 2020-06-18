@@ -4,7 +4,8 @@ from .models import Profile, Content, View, Like, Comment, Following
 
 @admin.register(Profile)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("auth_user", "followers_count")
+    list_display = ("user", "followers_count")
+
 
 @admin.register(Content)
 class ContentAdmin(admin.ModelAdmin):
