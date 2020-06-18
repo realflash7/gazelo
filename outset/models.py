@@ -25,7 +25,7 @@ class ContentQuerySet(models.QuerySet):
         )
 
 
-class UserDetail(models.Model):
+class Profile(models.Model):
     full_name = models.CharField(max_length=200, blank=False)
     bio = models.CharField(max_length=800, default=DEFAULT_USER_BIO)
     auth_user = models.OneToOneField(User, related_name="user_detail", on_delete=models.CASCADE, primary_key=True)

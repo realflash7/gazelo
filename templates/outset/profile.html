@@ -2,24 +2,24 @@
 {% load static %}
 
 {% block content %}
-    <h1>{{ user_detail.full_name }}</h1>
-    <h2>Followers : {{ user_detail.followers_count }}</h2>
+    <h1>{{ profile.full_name }}</h1>
+    <h2>Followers : {{ profile.followers_count }}</h2>
 
     <ul>
         {% for u in followers %}
-            <a class="list-group-item" href="{{ u.follower.user_detail.get_absolute_url }}">
-                {{ u.follower.user_detail.full_name }}
+            <a class="list-group-item" href="{{ u.follower.profile.get_absolute_url }}">
+                {{ u.follower.profile.full_name }}
             </a>
         {% endfor %}
     </ul>
 
 
-    <h2>Following : {{ user_detail.following_count }}</h2>
+    <h2>Following : {{ profile.following_count }}</h2>
 
     <ul>
         {% for u in followings %}
-            <a class="list-group-item" href="{{ u.user.user_detail.get_absolute_url }}">
-                {{ u.user.user_detail.full_name }}
+            <a class="list-group-item" href="{{ u.user.profile.get_absolute_url }}">
+                {{ u.user.profile.full_name }}
             </a>
         {% endfor %}
     </ul>

@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import UserDetail, Content, View, Like, Comment, Following
+from .models import Profile, Content, View, Like, Comment, Following
 
-@admin.register(UserDetail)
+@admin.register(Profile)
 class UserAdmin(admin.ModelAdmin):
     list_display = ("auth_user", "followers_count")
 
