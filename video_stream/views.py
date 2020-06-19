@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
-from gazelo.settings import APP_NAME, INVITATION_MESSAGE
+from gazelo.settings import APP_NAME
 from outset.models import Content
 
 from .forms import InvitationForm
@@ -37,18 +37,24 @@ def new_invitation(request):
 
 
 def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('video_stream_home')
+    print("SIGNUP VIEW")
+    if request.user.is_authenticated:
+        print("SIGNUP VIEW : User is authenticated")
+        return redirect('video_stream_home')
     else:
-        form = UserCreationForm()
-    return render(request, 'video_stream/signup.html', {'form': form})
+        print("SIGNUP VIEW : User is not authenticated")
+        if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                username = form.cleaned_data.get('username')
+                raw_password = form.cleaned_data.get('password1')
+                user = authenticate(username=username, password=raw_password)
+                login(request, user)
+                return redirect('video_stream_home')
+        else:
+            form = UserCreationForm()
+        return render(request, 'video_stream/signup.html', {'form': form})
 
 
 @login_required
