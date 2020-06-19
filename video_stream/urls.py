@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import home, new_invitation, test
+from .views import home, new_invitation, test, signup
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
@@ -11,6 +11,9 @@ urlpatterns = [
     path('logout/',
          LogoutView.as_view(),
          name="video_stream_logout"),
+    path('signup',
+         signup,
+         name="video_stream_signup"),
     path('invite/',
          new_invitation,
          name="video_stream_new_invitation"),
