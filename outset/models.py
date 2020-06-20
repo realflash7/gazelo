@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import User
@@ -104,12 +105,6 @@ class Following(models.Model):
 
 
 
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
-from outset.models import Profile
-
 
 @receiver(post_save, sender=User)
 def user_post_save_hook(sender, instance, created, **kwargs):
@@ -117,7 +112,12 @@ def user_post_save_hook(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     else:
-        instance.profile.save()
+        try :
+            instance.profile.save()
+        except ObjectDoesNotExist as e:
+            print("Could not save ", Profile.__name__, " record",
+                  ", Error=", e.__class__,
+                  ", Error message=" , e.__str__())
 
 
 @receiver(post_save, sender=Following)
